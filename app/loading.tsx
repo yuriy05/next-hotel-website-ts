@@ -1,4 +1,4 @@
-function Loader(): React.ReactElement {
+function Loader(): JSX.Element {
     return (
         <span>Loading...</span>
     )

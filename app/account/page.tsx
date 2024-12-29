@@ -2,7 +2,7 @@ export const metadata = {
   title: "Account",
 };
 
-function Page(): React.ReactElement {
+function Page(): JSX.Element {
   return <h1>My Account</h1>;
 }
 
