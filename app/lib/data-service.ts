@@ -35,9 +35,9 @@ export async function getCabinPrice(id: number) {
   return data;
 }
 
-export const getCabins = async function () {
+export async function getCabins() {
   const { data, error } = await supabase
-    .from("cabins")
+    .from("Cabins")
     .select("id, name, maxCapacity, regularPrice, discount, image")
     .order("name");
 
@@ -47,7 +47,7 @@ export const getCabins = async function () {
   }
 
   return data;
-};
+}
 
 // Guests are uniquely identified by their email address
 export async function getGuest(email: string) {

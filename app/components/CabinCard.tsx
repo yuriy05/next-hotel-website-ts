@@ -1,26 +1,23 @@
 import { UserIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
+import { Cabin } from "../types/Cabin";
+import Link from "next/link";
 
-type Props = {
-  name: string;
-  img: string;
-  id: number;
-  maxCapacity: number;
-  regularPrice: number;
-  discount: number;
-};
-
-function CabinCard({ cabin }: { cabin: Props }): JSX.Element {
-  const { name, img, id, maxCapacity, regularPrice, discount } = cabin;
+function CabinCard({ cabin }: { cabin: Cabin }): JSX.Element {
+  const { name, image, id, maxCapacity, regularPrice, discount } = cabin;
   return (
     <div className="border border-primary-800 flex">
-      <Image
-        src={img}
-        alt={`Cabin ${name}`}
-        className="border-r border-primary-800 flex-1"
-      />
+      <div className="flex-1 relative">
+        <Image
+          src={image}
+          fill
+          alt={`Cabin ${name}`}
+          className="border-r border-primary-800 object-cover"
+        />
+      </div>
+
       <div className="flex-grow">
-        <div className="pt-4 pb-5 px-7 bg-primary-700">
+        <div className="pt-4 pb-5 px-7">
           <h3 className="text-accent-500 font-semibold text-2xl mb-3">
             Cabin {name}
           </h3>
@@ -48,12 +45,12 @@ function CabinCard({ cabin }: { cabin: Props }): JSX.Element {
         </div>
 
         <div className="bg-primary-950 border-t border-t-primary-800 text-right">
-          <a
+          <Link
             href={`/cabins/${id}`}
-            className="border-l border-primary-800 py-4 px-6 inline-block hover:bg-accent-600 transition-all hover:text-primary-900"
+            className="border-l border-primary-800 py-4 px-6 inline-block hover:bg-accent-600 transition-all hover:text-primary-900 duration-300"
           >
             Details & reservation &rarr;
-          </a>
+          </Link>
         </div>
       </div>
     </div>

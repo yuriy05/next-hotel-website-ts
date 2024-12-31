@@ -1,11 +1,14 @@
 import CabinCard from "@/app/components/CabinCard";
+import { getCabins } from "../lib/data-service";
+import { Cabin } from "../types/Cabin";
+import Spinner from "../components/Spinner";
 
 export const metadata = {
   title: "Cabins",
 };
 
-function Page(): JSX.Element {
-  let cabins: any[] = [];
+async function Page(): Promise<JSX.Element> {
+  let cabins: Cabin[] = await getCabins();
 
   return (
     <div>
@@ -22,7 +25,7 @@ function Page(): JSX.Element {
       </p>
       {cabins.length > 0 && (
         <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
-          {cabins.map((cabin) => (
+          {cabins.map((cabin: Cabin) => (
             <CabinCard key={cabin.id} cabin={cabin} />
           ))}
         </div>
