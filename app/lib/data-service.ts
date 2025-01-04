@@ -4,9 +4,9 @@ import { supabase } from "@/app/services/supabase";
 /////////////
 // GET
 
-export async function getCabin(id: number) {
+export async function getCabin(id: string) {
   const { data, error } = await supabase
-    .from("cabins")
+    .from("Cabins")
     .select("*")
     .eq("id", id)
     .single();

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Cabin } from "../types/Cabin";
 import Link from "next/link";
 
-function CabinCard({ cabin }: { cabin: Cabin }): JSX.Element {
+function CabinCard({ cabin }: { cabin: Cabin }) {
   const { name, image, id, maxCapacity, regularPrice, discount } = cabin;
   return (
     <div className="border border-primary-800 flex">
