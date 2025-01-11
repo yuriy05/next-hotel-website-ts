@@ -30,7 +30,8 @@ async function Cabin({
 
   const cabin = await getCabin(params.cabinId);
 
-  const { name, maxCapacity, regularPrice, discount, image, description } =
+  //TODO regularPrice and discount should be destructured in the future
+  const { name, maxCapacity, image, description } =
     cabin;
 
   return (

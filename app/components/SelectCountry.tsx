@@ -1,4 +1,3 @@
-import { getCountries } from "@/app/lib/data-service";
 import { Country } from "../types/Country";
 
 type SelectCountryProps = {

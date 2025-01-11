@@ -53,7 +53,7 @@ export async function getCabins() {
 
 // Guests are uniquely identified by their email address
 export async function getGuest(email: string) {
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from("guests")
     .select("*")
     .eq("email", email)
@@ -64,7 +64,8 @@ export async function getGuest(email: string) {
 }
 
 export async function getBooking(id: number) {
-  const { data, error, count } = await supabase
+  //TODO count --> needs to be destructured
+  const { data, error } = await supabase
     .from("bookings")
     .select("*")
     .eq("id", id)
@@ -79,7 +80,8 @@ export async function getBooking(id: number) {
 }
 
 export async function getBookings(guestId: number) {
-  const { data, error, count } = await supabase
+  //TODO count --> needs to be destructured
+  const { data, error } = await supabase
     .from("bookings")
     // We actually also need data on the cabins as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
     .select(
@@ -145,14 +147,14 @@ export async function getCountries() {
     const countries = await res.json();
     return countries;
   } catch (e) {
-    throw new Error("Could not fetch countries");
+    throw new Error(`Could not fetch countries, ${e}`);
   }
 }
 
 /////////////
 // CREATE
 
-export async function createGuest(newGuest: {}) {
+export async function createGuest(newGuest: object) {
   const { data, error } = await supabase.from("guests").insert([newGuest]);
 
   if (error) {
@@ -163,7 +165,7 @@ export async function createGuest(newGuest: {}) {
   return data;
 }
 
-export async function createBooking(newBooking: {}) {
+export async function createBooking(newBooking: object) {
   const { data, error } = await supabase
     .from("bookings")
     .insert([newBooking])
@@ -183,7 +185,7 @@ export async function createBooking(newBooking: {}) {
 // UPDATE
 
 // The updatedFields is an object which should ONLY contain the updated data
-export async function updateGuest(id: number, updatedFields: {}) {
+export async function updateGuest(id: number, updatedFields: object) {
   const { data, error } = await supabase
     .from("guests")
     .update(updatedFields)
@@ -198,7 +200,7 @@ export async function updateGuest(id: number, updatedFields: {}) {
   return data;
 }
 
-export async function updateBooking(id: number, updatedFields: {}) {
+export async function updateBooking(id: number, updatedFields: object) {
   const { data, error } = await supabase
     .from("bookings")
     .update(updatedFields)

@@ -4,7 +4,7 @@ import { getCabins } from "@/app/lib/data-service";
 import { Cabin } from "@/app/types/Cabin";
 
 async function CabinList(): Promise<JSX.Element> {
-  let cabins: Cabin[] = await getCabins();
+  const cabins: Cabin[] = await getCabins();
 
   return (
     <>

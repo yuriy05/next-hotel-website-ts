@@ -1,4 +1,5 @@
 import ReservationCard from "@/app/components/ReservationCard";
+import { Booking } from "@/app/types/Booking";
 
 export const metadata = {
   title: "Reservations",
@@ -6,7 +7,7 @@ export const metadata = {
 
 function Page(): JSX.Element {
   // CHANGE
-  const bookings: any[] = [];
+  const bookings: Booking[] = [];
 
   return (
     <div>
