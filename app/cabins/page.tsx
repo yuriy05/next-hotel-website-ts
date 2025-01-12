@@ -2,12 +2,18 @@ import { Suspense } from "react";
 
 import Spinner from "@/app/components/Spinner";
 import CabinList from "@/app/components/CabinList";
+import FilterCabins from "../components/FilterCabins";
 
 export const metadata = {
   title: "Cabins",
 };
 
-function Page(): JSX.Element {
+function Page({
+  searchParams,
+}: {
+  searchParams: { capacity: string };
+}): JSX.Element {
+  const filter = searchParams?.capacity ?? "all";
   return (
     <div>
       <h1 className="text-4xl mb-4 text-accent-400 font-medium">
@@ -21,8 +27,11 @@ function Page(): JSX.Element {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
+      <div className="flex justify-end mb-3">
+        <FilterCabins />
+      </div>
       <Suspense fallback={<Spinner />}>
-        <CabinList />
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );

@@ -3,7 +3,7 @@ export const metadata = {
 };
 
 function Page(): JSX.Element {
-  return <h1>My Account</h1>;
+  return <h1 className="text-xl text-accent-500">Hello there !</h1>;
 }
 
 export default Page;

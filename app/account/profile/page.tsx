@@ -8,7 +8,7 @@ export const metadata = {
 
 async function Page(): Promise<JSX.Element> {
   // CHANGE
-  const countryFlag = "pt.jpg";
+  const countryFlag = "/pt.jpg";
   const nationality = "portugal";
   const countries = await getCountries();
 
@@ -44,6 +44,8 @@ async function Page(): Promise<JSX.Element> {
           <div className="flex items-center justify-between">
             <label htmlFor="nationality">Where are you from?</label>
             <Image
+              width={100}
+              height={100}
               src={countryFlag}
               alt="Country flag"
               className="h-5 rounded-sm"
