@@ -31,7 +31,7 @@ function Page({
         <FilterCabins />
       </div>
       <Suspense fallback={<Spinner />}>
-        <CabinList filter={filter} />
+        <CabinList filter={filter} key={filter} />
       </Suspense>
     </div>
   );
