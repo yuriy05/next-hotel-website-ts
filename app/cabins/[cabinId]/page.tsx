@@ -1,3 +1,4 @@
+import Reservation from "@/app/components/Reservation";
 import TextExpander from "@/app/components/TextExpander";
 import { getCabin, getCabins } from "@/app/lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
@@ -84,6 +85,7 @@ async function Cabin({
         <h2 className="text-5xl font-semibold text-center">
           Reserve today. Pay on arrival.
         </h2>
+        <Reservation />
       </div>
     </div>
   );
