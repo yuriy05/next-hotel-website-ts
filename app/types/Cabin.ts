@@ -5,4 +5,5 @@ export interface Cabin {
   discount: number;
   maxCapacity: number;
   image: string;
+  description: string;
 }

@@ -82,10 +82,10 @@ export async function getBooking(id: number) {
 export async function getBookings(guestId: number) {
   //TODO count --> needs to be destructured
   const { data, error } = await supabase
-    .from("bookings")
+    .from("Bookings")
     // We actually also need data on the cabins as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
     .select(
-      "id, created_at, startDate, endDate, numNights, numGuests, totalPrice, guestId, cabinId, cabins(name, image)",
+      "id, created_at, startDate, endDate, numNights, numGuests, totalPrice, guestId, cabinId, Cabins(name, image)",
     )
     .eq("guestId", guestId)
     .order("startDate");
@@ -98,16 +98,16 @@ export async function getBookings(guestId: number) {
   return data;
 }
 
-export async function getBookedDatesByCabinId(cabinId: number) {
+export async function getBookedDatesByCabinId(cabinId: string) {
   let today: string | Date = new Date();
   today.setUTCHours(0, 0, 0, 0);
   today = today.toISOString();
 
   // Getting all bookings
   const { data, error } = await supabase
-    .from("bookings")
+    .from("Bookings")
     .select("*")
-    .eq("cabinId", cabinId)
+    .eq("cabinID", cabinId)
     .or(`startDate.gte.${today},status.eq.checked-in`);
 
   if (error) {
@@ -129,7 +129,7 @@ export async function getBookedDatesByCabinId(cabinId: number) {
 }
 
 export async function getSettings() {
-  const { data, error } = await supabase.from("settings").select("*").single();
+  const { data, error } = await supabase.from("Settings").select("*").single();
 
   if (error) {
     console.error(error);
