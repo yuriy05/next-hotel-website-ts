@@ -4,6 +4,7 @@ import Footer from "@/app/components/Footer";
 import Header from "./components/Header";
 
 import { Josefin_Sans } from "next/font/google";
+import { ReservationProvider } from "./context/ReservationContext";
 
 export const metadata = {
   title: {
@@ -32,7 +33,9 @@ export default function RootLayout({
         <Header />
 
         <div className="flex-1 px-8 py-12 grid">
-          <main className="max-w-7xl mx-auto w-full">{children}</main>
+          <main className="max-w-7xl mx-auto w-full">
+            <ReservationProvider>{children}</ReservationProvider>
+          </main>
         </div>
 
         <Footer />

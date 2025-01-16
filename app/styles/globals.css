@@ -30,3 +30,11 @@
     }
   }
 }
+
+.rdp-day:hover {
+  background-color: theme("colors.accent.800") !important;
+}
+
+.rdp-day_selected {
+  background-color: theme("colors.accent.500") !important;
+}
