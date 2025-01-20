@@ -3,7 +3,6 @@
 import { isWithinInterval } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { Cabin } from "../types/Cabin";
-import { useState } from "react";
 import "react-day-picker/dist/style.css";
 import "@/app/styles/globals.css";
 import { useReservation } from "../context/ReservationContext";
@@ -76,7 +75,7 @@ function DateSelector({ settings, bookedDates, cabin }: DateSelectorProps) {
           ) : null}
         </div>
 
-        {range.from || range.to ? (
+        {range?.from || range?.to ? (
           <button
             className="border border-primary-800 py-2 px-4 text-sm font-semibold"
             onClick={() => resetRange()}

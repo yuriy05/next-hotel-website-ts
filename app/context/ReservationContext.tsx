@@ -9,7 +9,7 @@ interface DateRange {
 
 interface ReservationContextType {
   range: DateRange;
-  setRange:(range: DateRange) => void;
+  setRange: (range: DateRange) => void;
   resetRange: () => void;
 }
 
