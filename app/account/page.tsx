@@ -1,9 +1,14 @@
+import { auth } from "../lib/auth";
+
 export const metadata = {
-  title: "Account",
+  title: "Login",
 };
 
-function Page(): JSX.Element {
-  return <h1 className="text-xl text-accent-500">Hello there !</h1>;
+async function Page(): Promise<JSX.Element> {
+  const session = await auth();
+  const firstName = session?.user?.name!.split(" ").at(0);
+
+  return <h1 className="text-xl text-accent-500">Welcome, {firstName} !</h1>;
 }
 
 export default Page;
