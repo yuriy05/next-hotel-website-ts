@@ -6,4 +6,9 @@ export const {
   handlers: { GET, POST },
 } = NextAuth({
   providers: [Google],
+  callbacks: {
+    authorized({ auth, request }) {
+      return !!auth?.user;
+    },
+  },
 });
