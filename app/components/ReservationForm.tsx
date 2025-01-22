@@ -37,7 +37,7 @@ function ReservationForm({
           : null}
       </p>
 
-      <form className="bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col flex-1">
+      <form className="bg-primary-900 py-5 px-8 sm:py-10 sm:px-16 text-lg flex gap-5 flex-col flex-1">
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select

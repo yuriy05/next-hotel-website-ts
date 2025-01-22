@@ -9,8 +9,8 @@ function Cabin({ cabin }: { cabin: Cabin }): JSX.Element {
   const { name, maxCapacity, image, description } = cabin;
 
   return (
-    <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
-      <div className="relative scale-[1.15] -translate-x-3">
+    <div className="grid grid-cols-1 gap-10 lg:gap-20 border border-primary-800 py-3 px-10 mb-24 lg:grid-cols-[3fr_4fr]">
+      <div className="relative lg:scale-[1.15] min-h-[450px] lg:-translate-x-3 mx-[-40px] my-[-12px]">
         <Image
           fill
           className="object-cover"
@@ -20,7 +20,7 @@ function Cabin({ cabin }: { cabin: Cabin }): JSX.Element {
       </div>
 
       <div>
-        <h3 className="text-accent-100 font-black text-7xl mb-5 translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%]">
+        <h3 className="text-accent-100 font-black text-7xl mb-5 lg:translate-x-[-254px] bg-primary-950 lg:p-6 pb-1 lg:w-[150%]">
           Cabin {name}
         </h3>
 

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import SelectCountry from "@/app/components/SelectCountry";
-import { getCountries } from "@/app/lib/data-service";
+import { getCountries, getGuest } from "@/app/lib/data-service";
 import UpdateProfileForm from "@/app/components/UpdateProfileForm";
+import { auth } from "@/app/lib/auth";
 
 export const metadata = {
   title: "Update Profile",
@@ -9,9 +10,9 @@ export const metadata = {
 
 async function Page(): Promise<JSX.Element> {
   // CHANGE
-  const countryFlag = "/pt.jpg";
-  const nationality = "portugal";
   const countries = await getCountries();
+  const session = await auth();
+  const guest = await getGuest(session!.user!.email!);
 
   return (
     <div>
@@ -24,13 +25,13 @@ async function Page(): Promise<JSX.Element> {
         faster and smoother. See you soon!
       </p>
 
-      <UpdateProfileForm>
+      <UpdateProfileForm guest={guest}>
         <SelectCountry
           countries={countries}
           name="nationality"
           id="nationality"
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
-          defaultCountry={nationality}
+          defaultCountry={guest.nationality}
         />
       </UpdateProfileForm>
     </div>
