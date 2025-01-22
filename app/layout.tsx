@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import { Josefin_Sans } from "next/font/google";
 import { ReservationProvider } from "./context/ReservationContext";
 
+
 export const metadata = {
   title: {
     template: "%s | The Wild Oasis",

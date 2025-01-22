@@ -31,10 +31,24 @@
   }
 }
 
+/* ** Date picker custom styles ** */
+.rdp-day {
+  height: 30px;
+  width: 30px;
+}
+
 .rdp-day:hover {
   background-color: theme("colors.accent.800") !important;
 }
 
 .rdp-day_selected {
   background-color: theme("colors.accent.500") !important;
+}
+
+@media (max-width: 1024px) {
+  .rdp-months {
+    flex-direction: column;
+    align-items: baseline;
+    gap: 1rem;
+  }
 }
