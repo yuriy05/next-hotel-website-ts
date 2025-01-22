@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { updateGuest } from "../lib/actions";
 
-const countryFlag = "/pt.jpg";
-
 function UpdateProfileForm({
   children,
   guest,
