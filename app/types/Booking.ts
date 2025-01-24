@@ -10,5 +10,6 @@ export interface Booking {
   numGuests: number;
   status: string;
   created_at: string;
-  cabins: Cabin;
+  cabinID: number;
+  Cabins: Cabin;
 }

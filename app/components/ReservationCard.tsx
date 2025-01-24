@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 import DeleteReservation from "@/app/components/DeleteReservation";
@@ -11,7 +13,7 @@ export const formatDistanceFromNow = (dateStr: string) =>
     addSuffix: true,
   }).replace("about ", "");
 
-function ReservationCard({ booking }: { booking: Booking }) {
+function ReservationCard({ booking }: { booking: Record<string, any> }) {
   //TODO guestId and status needs to be destructured in the future
   const {
     id,
@@ -21,7 +23,9 @@ function ReservationCard({ booking }: { booking: Booking }) {
     totalPrice,
     numGuests,
     created_at,
-    cabins: { name, image },
+    guestId,
+    status,
+    Cabins: { name, image },
   } = booking;
 
   return (
@@ -29,6 +33,7 @@ function ReservationCard({ booking }: { booking: Booking }) {
       <div className="relative h-32 aspect-square">
         <Image
           src={image}
+          fill
           alt={`Cabin ${name}`}
           className="object-cover border-r border-primary-800"
         />

@@ -1,13 +1,15 @@
 import ReservationCard from "@/app/components/ReservationCard";
-import { Booking } from "@/app/types/Booking";
+import { auth } from "@/app/lib/auth";
+import { getBookings } from "@/app/lib/data-service";
+import { User } from "@/app/types/User";
 
 export const metadata = {
   title: "Reservations",
 };
 
-function Page(): JSX.Element {
-  // CHANGE
-  const bookings: Booking[] = [];
+async function Page(): Promise<JSX.Element> {
+  const session = await auth();
+  const bookings = await getBookings(session!.user!.guestId);
 
   return (
     <div>
@@ -24,7 +26,7 @@ function Page(): JSX.Element {
         </p>
       ) : (
         <ul className="space-y-6">
-          {bookings.map((booking) => (
+          {bookings?.map((booking: Record<string, any>) => (
             <ReservationCard booking={booking} key={booking.id} />
           ))}
         </ul>
