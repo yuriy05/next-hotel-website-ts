@@ -42,7 +42,9 @@ function useReservation() {
   const context = useContext(ReservationContext);
 
   if (context === undefined) {
-    throw new Error("context can not be used outside the ReservationProvider");
+    throw new Error(
+      "useReservation can not be used outside the ReservationProvider",
+    );
   }
   return context;
 }
