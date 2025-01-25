@@ -64,7 +64,7 @@ function Window({
         ref={ref}
       >
         <button
-          className="absolute top-4 right-5 transition-all duration-200 translate-x-3 hover:scale-150"
+          className="absolute top-4 right-5 transition-all duration-500 translate-x-3 hover:scale-150"
           onClick={close}
         >
           <XMarkIcon height={25} width={25} />
