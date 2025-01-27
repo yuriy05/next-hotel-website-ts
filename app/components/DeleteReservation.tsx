@@ -8,9 +8,13 @@ import SpinnerMini from "./SpinnerMini";
 
 type DeleteReservationProps = {
   readonly bookingId: number;
+  onDelete: (bookingId: number) => void;
 };
 
-function DeleteReservation({ bookingId }: DeleteReservationProps): JSX.Element {
+function DeleteReservation({
+  bookingId,
+  onDelete,
+}: DeleteReservationProps): JSX.Element {
   const [isPending, startTransation] = useTransition();
 
   return (
@@ -34,6 +38,7 @@ function DeleteReservation({ bookingId }: DeleteReservationProps): JSX.Element {
           isPending={isPending}
           startTransition={startTransation}
           bookingId={bookingId}
+          onDelete={onDelete}
         />
       </Modal.Window>
     </Modal>

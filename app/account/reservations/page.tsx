@@ -1,4 +1,5 @@
 import ReservationCard from "@/app/components/ReservationCard";
+import ReservationList from "@/app/components/ReservationList";
 import { auth } from "@/app/lib/auth";
 import { getBookings } from "@/app/lib/data-service";
 import { User } from "@/app/types/User";
@@ -25,11 +26,7 @@ async function Page(): Promise<JSX.Element> {
           </a>
         </p>
       ) : (
-        <ul className="space-y-6">
-          {bookings?.map((booking: Record<string, any>) => (
-            <ReservationCard booking={booking} key={booking.id} />
-          ))}
-        </ul>
+        <ReservationList bookings={bookings}/>
       )}
     </div>
   );

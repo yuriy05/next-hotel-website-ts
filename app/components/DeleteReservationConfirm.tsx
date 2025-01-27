@@ -1,5 +1,4 @@
 import { TransitionStartFunction, useTransition } from "react";
-import { deleteReservation } from "../lib/actions";
 import SpinnerMini from "./SpinnerMini";
 
 function DeleteReservationConfrim({
@@ -7,14 +6,16 @@ function DeleteReservationConfrim({
   bookingId,
   startTransition,
   isPending,
+  onDelete,
 }: {
   onCloseModal?: () => void;
   startTransition: TransitionStartFunction;
   bookingId: number;
   isPending: boolean;
+  onDelete: (bookingId: number) => void;
 }): JSX.Element {
   function handleDelete() {
-    startTransition(() => deleteReservation(bookingId));
+    startTransition(() => onDelete(bookingId));
   }
 
   return (
