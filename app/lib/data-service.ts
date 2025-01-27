@@ -66,7 +66,7 @@ export async function getGuest(email: string) {
 export async function getBooking(id: number) {
   //TODO count --> needs to be destructured
   const { data, error } = await supabase
-    .from("bookings")
+    .from("Bookings")
     .select("*")
     .eq("id", id)
     .single();
@@ -196,21 +196,6 @@ export async function updateGuest(id: number, updatedFields: object) {
   if (error) {
     console.error(error);
     throw new Error("Guest could not be updated");
-  }
-  return data;
-}
-
-export async function updateBooking(id: number, updatedFields: object) {
-  const { data, error } = await supabase
-    .from("bookings")
-    .update(updatedFields)
-    .eq("id", id)
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error("Booking could not be updated");
   }
   return data;
 }
