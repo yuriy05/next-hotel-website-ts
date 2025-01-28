@@ -5,15 +5,12 @@ import { notFound } from "next/navigation";
 /////////////
 // GET
 
-export async function getCabin(id: string) {
+export async function getCabin(id: number) {
   const { data, error } = await supabase
     .from("Cabins")
     .select("*")
     .eq("id", id)
     .single();
-
-  // For testing
-  // await new Promise((res) => setTimeout(res, 1000));
 
   if (error) {
     console.error(error);
@@ -101,22 +98,26 @@ export async function getBookings(guestId: number) {
   return data;
 }
 
-export async function getBookedDatesByCabinId(cabinId: string) {
+export async function getBookedDatesByCabinId(cabinId: number) {
   let today: string | Date = new Date();
   today.setUTCHours(0, 0, 0, 0);
   today = today.toISOString();
+
+  console.log(cabinId);
 
   // Getting all bookings
   const { data, error } = await supabase
     .from("Bookings")
     .select("*")
     .eq("cabinID", cabinId)
-    .or(`startDate.gte.${today},status.eq.checked-in`);
+    .or(`startDate.gte.${today}, status.eq.checked-in`);
 
   if (error) {
     console.error(error);
     throw new Error("Bookings could not get loaded");
   }
+
+  console.log(data);
 
   // Converting to actual dates to be displayed in the date picker
   const bookedDates = data
@@ -127,6 +128,8 @@ export async function getBookedDatesByCabinId(cabinId: string) {
       });
     })
     .flat();
+
+  console.log(bookedDates);
 
   return bookedDates;
 }

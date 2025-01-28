@@ -8,7 +8,7 @@ import { auth } from "@/app/lib/auth";
 async function Reservation({ cabin }: { cabin: Cabin }): Promise<JSX.Element> {
   const [settings, bookedDates] = await Promise.all([
     getSettings(),
-    getBookedDatesByCabinId(String(cabin.id)),
+    getBookedDatesByCabinId(Number(cabin.id)),
   ]);
 
   const session = await auth();

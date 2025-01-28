@@ -45,6 +45,12 @@
   background-color: theme("colors.accent.500") !important;
 }
 
+.rdp-dropdown {
+  padding: 1rem;
+  color: theme("colors.accent.500");
+  background-color: theme("colors.primary.900");
+}
+
 @media (max-width: 1024px) {
   .rdp-months {
     flex-direction: column;
