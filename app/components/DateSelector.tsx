@@ -9,7 +9,7 @@ import { useReservation } from "../context/ReservationContext";
 import { differenceInDays } from "date-fns/differenceInDays";
 import { isPast, isSameDay } from "date-fns";
 
-function isAlreadyBooked(range: any, datesArr: any[]) {
+function isAlreadyBooked(range: any = {}, datesArr: any[]) {
   return (
     range.from &&
     range.to &&
@@ -20,7 +20,7 @@ function isAlreadyBooked(range: any, datesArr: any[]) {
 }
 
 type DateSelectorProps = {
-  settings: any; //TODO add settings types instead of type any
+  settings: any;
   bookedDates: any[];
   cabin: Cabin;
 };
@@ -30,8 +30,13 @@ function DateSelector({ settings, bookedDates, cabin }: DateSelectorProps) {
   // CHANGE
   const { regularPrice, discount } = cabin;
 
-  const displayRange = isAlreadyBooked(range, bookedDates) ? {} : range;
-  const numNights = differenceInDays(displayRange.to, displayRange.from);
+  const displayRange = isAlreadyBooked(range, bookedDates)
+    ? resetRange()
+    : range;
+
+  console.log(displayRange);
+
+  const numNights = differenceInDays(displayRange?.to, displayRange?.from);
   const cabinPrice = numNights * (regularPrice - discount);
 
   const { minBookingLength, maxBookingLength } = settings;

@@ -3,13 +3,13 @@
 import { createContext, useContext, useState } from "react";
 
 interface DateRange {
-  from: Date | undefined;
-  to: Date | undefined;
+  from: Date | string | undefined;
+  to: Date | string | undefined;
 }
 
 interface ReservationContextType {
   range: DateRange;
-  setRange: (range: DateRange) => void;
+  setRange: (range: DateRange | string | number) => void;
   resetRange: () => void;
 }
 

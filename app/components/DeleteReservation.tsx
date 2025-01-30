@@ -6,7 +6,7 @@ import DeleteReservationConfrim from "./DeleteReservationConfirm";
 import { useTransition } from "react";
 import SpinnerMini from "./SpinnerMini";
 
-type DeleteReservationProps = {
+type DeleteReservationwWWWProps = {
   readonly bookingId: number;
   onDelete: (bookingId: number) => void;
 };

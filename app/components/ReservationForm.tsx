@@ -1,8 +1,12 @@
 "use client";
 
+import { differenceInDays } from "date-fns/fp";
 import { useReservation } from "../context/ReservationContext";
 import { Cabin } from "../types/Cabin";
 import { User } from "../types/User";
+import { createBooking } from "../lib/actions";
+import { format } from "date-fns";
+import SubmitButton from "./SubmitButton";
 
 function ReservationForm({
   cabin,
@@ -11,8 +15,23 @@ function ReservationForm({
   cabin: Cabin;
   user: User;
 }): JSX.Element {
-  const { range } = useReservation();
-  const { maxCapacity } = cabin;
+  const { range, resetRange } = useReservation();
+  const { maxCapacity, regularPrice, discount, id: cabinID } = cabin;
+
+  const startDate = range?.from;
+  const endDate = range?.to;
+  const numNights = differenceInDays(startDate, endDate);
+  const cabinPrice = numNights * (regularPrice - discount);
+
+  const bookingData = {
+    startDate,
+    endDate,
+    numNights,
+    cabinPrice,
+    cabinID,
+  };
+
+  const createBookingWithData = createBooking.bind(null, bookingData);
 
   return (
     <div className="scale-[1.01] flex flex-col">
@@ -31,13 +50,20 @@ function ReservationForm({
         </div>
       </div>
 
-      <p>
+      <p className="px-4 py-2">
         {range?.from && range?.to
-          ? `${String(range?.from)} to ${String(range?.to)}`
+          ? `${format(String(range?.from), "d EEEE LLLL y")} to ${format(String(range?.to), "d EEEE LLLL y")}`
           : null}
       </p>
 
-      <form className="bg-primary-900 py-5 px-8 sm:py-10 sm:px-16 text-lg flex gap-5 flex-col flex-1">
+      <form
+        // action={createBookingWithData}
+        action={async (formData) => {
+          await createBookingWithData(formData);
+          resetRange();
+        }}
+        className="bg-primary-900 py-5 px-8 sm:py-10 sm:px-16 text-lg flex gap-5 flex-col flex-1"
+      >
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select
@@ -70,11 +96,13 @@ function ReservationForm({
         </div>
 
         <div className="flex flex-col justify-end items-center gap-6 lg:flex-row">
-          <p className="text-primary-300 text-base">Start by selecting dates</p>
-
-          <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-            Reserve now
-          </button>
+          {!startDate || !endDate ? (
+            <p className="text-primary-300 text-base">
+              Start by selecting dates
+            </p>
+          ) : (
+            <SubmitButton pendingLabel="Reserving...">Reserve</SubmitButton>
+          )}
         </div>
       </form>
     </div>
